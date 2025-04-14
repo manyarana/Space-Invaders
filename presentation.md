@@ -171,6 +171,67 @@ if bullet.rect.colliderect(enemy.rect):
 - Loaded once during initialization
 - Stored in variables and reused to avoid repeated file I/O
 
+### Analysis of all the classes
+1.Character 
+| Element         | Description                                                                 |
+|-----------------|-----------------------------------------------------------------------------|
+| Inherits From   | `Sprite` (SFML class for 2D graphics)                                       |
+| Purpose         | Wrapper over `Sprite` to simplify creating game characters                  |
+| Constructor     | Takes `position`, `texture`, and `scale` as input                           |
+| Initialization  | Calls `Sprite(texture)` to initialize the base class                        |
+| setPosition     | Sets the character's position on the screen                                 |
+| setScale        | Sets the character's size by scaling the sprite                             |
+
+2.Enemy
+| Element        | Description                                                                  |
+|----------------|----------------------------------------------------------------------------- |
+| Inherits From  | `Character`                                                                  |
+| Purpose        | Represents an enemy in the game                                              |
+| Constructor    | Initializes the enemy using position, texture, and scale; sets `alive = true`|
+| `isAlive()`    | Returns the current alive status (`true` or `false`)                         |
+| `kill()`       | Marks the enemy as dead (`alive = false`)                                    |
+| `reset()`      | Resets the enemy to alive state (`alive = true`)                             |
+| Private Field  | `bool alive` — tracks if the enemy is active                                 |
+
+3.Menu
+| Element            | Description                                                                     |
+|--------------------|---------------------------------------------------------------------------------|
+| Purpose            | Displays the main menu and handles user selection                               |
+| Constructor        | Initializes `userChoice` (default = 0)                                          |
+| `displayMenu()`    | Renders game instructions and options; updates score, lives, and game state     |
+| `getUserChoice()`  | Returns the current user menu selection                                         |
+| `setUserChoice()`  | Sets a new menu selection value                                                 |
+| Private Field      | `int userChoice` — stores the user's selected option (1: Play, 2: Test, 3: Exit)|
+
+4.Missile
+| Element        | Description                                                         |
+|----------------|---------------------------------------------------------------------|
+| Inherits From  | `Character`                                                         |
+| Purpose        | Represents a missile (projectile) in the game                       |
+| Constructor    | Initializes missile using position, texture, and scale              |
+| Behavior       | Currently inherits all behavior from `Character` (no new methods)   |
+
+5.User
+| Element        | Description                                                         |
+|----------------|---------------------------------------------------------------------|
+| Inherits From  | `Character`                                                         |
+| Purpose        | Represents the player (user-controlled character)                   |
+| Constructor    | Initializes the user using position, texture, and scale             |
+| Behavior       | Inherits all behavior from `Character`; no additional methods yet   |
+
+### Header File Explanation (`header.hpp`)
+
+| Element                        | Description                                                                |
+|--------------------------------|----------------------------------------------------------------------------|
+| `#include <iostream>`          | For basic I/O operations (`cout`, `endl`)                                  |
+| `#include <string>`            | For using `std::string`                                                    |
+| `#include <vector>`            | For using `std::vector`                                                    |
+| `#include <time.h>`            | For timing functions (e.g., random seed setup)                             |
+| `#include <SFML/Graphics.hpp>` | Imports SFML graphics module (sprites, textures, windows)                  |
+| `#include <SFML/Audio.hpp>`    | Imports SFML audio module (sound effects, music)                           |
+| `using namespace sf`           | Allows direct use of SFML types like `RenderWindow`, `Texture`, etc.       |
+| `using std::...`               | Allows direct use of common STL items (`cout`, `vector`, etc.)             |
+
 ### 3️⃣ Trade-offs Made
 
 | Trade-off                    | Benefits                                | Limitations                                     |
