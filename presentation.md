@@ -127,9 +127,9 @@ This method is:
 -Lightweight and fast for simple 2D games
 -Sufficient for rectangle-shaped hitboxes (like bullets/enemies)
 
-###2️⃣ Data Structures Used
+### 2️⃣ Data Structures Used
 
-####🧱 a. Classes (OOP Abstractions)
+#### 🧱 a. Classes (OOP Abstractions)
 
 Encapsulated into three main game object types:
 
@@ -145,7 +145,7 @@ Encapsulated into three main game object types:
 
 This abstraction simplifies managing multiple instances and separates responsibilities.
 
-####📚 b. Lists (Collections of Game Entities)
+#### 📚 b. Lists (Collections of Game Entities)
 
 -enemies[]: List storing active enemy instances
 -bullets[]: List storing all fired bullets
@@ -153,7 +153,7 @@ This abstraction simplifies managing multiple instances and separates responsibi
 
 These structures allow easy iteration for movement updates and collision checks.
 
-####📐 c. Pygame Rectangles for Hitboxes
+#### 📐 c. Pygame Rectangles for Hitboxes
 
 -Each sprite is associated with a `pygame.Rect`
 -Used in:
@@ -163,7 +163,7 @@ if bullet.rect.colliderect(enemy.rect):
 ```
 -Enables fast and reliable overlap detection without external libraries
 
-####🖼️ d. Assets: Images and Sounds
+#### 🖼️ d. Assets: Images and Sounds
 
 -Images: `pygame.image.load()`
 -Sounds: `pygame.mixer.Sound()`
@@ -171,7 +171,7 @@ if bullet.rect.colliderect(enemy.rect):
 -Loaded once during initialization
 -Stored in variables and reused to avoid repeated file I/O
 
-###3️⃣ Trade-offs Made
+### 3️⃣ Trade-offs Made
 
 | Trade-off                    | Benefits                                | Limitations                                     |
 |------------------------------|-----------------------------------------|-------------------------------------------------|
@@ -184,7 +184,7 @@ if bullet.rect.colliderect(enemy.rect):
 
 ---
 
-##💡 Key Learnings
+## 💡 Key Learnings
 
 -Understood the game loop architecture in real-world Pygame projects.
 -Gained insight into class-based design for game elements.
@@ -193,8 +193,7 @@ if bullet.rect.colliderect(enemy.rect):
 
 ---
 
-##.
-👨‍💻 Credits
+## 👨‍💻 Credits
  
  -Original Author: 
  -Investigated by:
