@@ -25,7 +25,7 @@
 
 ## 🧠 Breadth-wise Understanding
 
-### 📁 File & Module Structure
+### File & Module Structure
 
 The project follows a modular file structure, organizing game components into separate scripts for better maintainability and clarity:
 
@@ -37,7 +37,7 @@ The project follows a modular file structure, organizing game components into se
 - `utils.py`: Utility functions like loading images and sound.
 
 
-### 🔄 Game Flow Overview
+### Game Flow Overview
 
 The gameplay is structured around a **central game loop** running at a fixed frame rate. The steps are:
 
@@ -55,7 +55,7 @@ The gameplay is structured around a **central game loop** running at a fixed fra
 3. **Exit Handling**
    - Triggered by window close or collision end state
 
-### 🕹️ Controls and Interaction
+### Controls and Interaction
 
 - **Arrow Keys (← / →):** Move player horizontally
 - **Spacebar:** Fire bullets
@@ -64,7 +64,7 @@ The gameplay is structured around a **central game loop** running at a fixed fra
 Input is managed through `pygame.event.get()` inside the loop, checking for both keydown and quit events.
 
 
-### 🎯 Gameplay Elements
+### Gameplay Elements
 
 - **Player**: A spaceship that can move left and right and shoot upward
 - **Enemies**: Aliens descending toward the player; random respawning
@@ -81,7 +81,7 @@ This section explores the internal architecture and engineering choices behind t
 
 ### 1️⃣ Approaches Taken
 
-#### 🔧 a. Object-Oriented Design (OOP)
+####  a. Object-Oriented Design (OOP)
 
 The project is designed using **object-oriented programming**, a core software engineering principle. Each game entity is modeled as a class with attributes and behaviors:
 
@@ -94,7 +94,7 @@ This approach improves:
 - Reusability
 - Extensibility (easy to add power-ups, new enemies, etc.)
 
-#### 🔁 b. Main Game Loop (Real-Time Frame Handling)
+#### b. Main Game Loop (Real-Time Frame Handling)
 
 A central loop maintains a steady frame rate and updates all game objects every frame. This loop is responsible for:
 
@@ -108,7 +108,7 @@ A central loop maintains a steady frame rate and updates all game objects every 
 
 This loop allows real-time game progression and is the **heart of the game**.
 
-#### ⌨️ c. Event-Driven Input Handling
+#### c. Event-Driven Input Handling
 
 The project listens to system and keyboard events using Pygame’s event system:
 
@@ -119,7 +119,7 @@ for event in pygame.event.get():
  ```
 Movement is detected with `pygame.key.get_pressed()`, enabling smooth, continuous actions.
 
-### 🎯 d. Manual Collision Detection
+### d. Manual Collision Detection
 
 Rather than using a physics engine, the game relies on manual bounding box collision detection using `pygame.Rect.colliderect()`.
 
@@ -129,7 +129,7 @@ This method is:
 
 ### 2️⃣ Data Structures Used
 
-#### 🧱 a. Classes (OOP Abstractions)
+#### a. Classes (OOP Abstractions)
 
 Encapsulated into three main game object types:
 
@@ -145,7 +145,7 @@ Encapsulated into three main game object types:
 
 This abstraction simplifies managing multiple instances and separates responsibilities.
 
-#### 📚 b. Lists (Collections of Game Entities)
+#### b. Lists (Collections of Game Entities)
 
 - enemies[]: List storing active enemy instances
 - bullets[]: List storing all fired bullets
@@ -153,7 +153,7 @@ This abstraction simplifies managing multiple instances and separates responsibi
 
 These structures allow easy iteration for movement updates and collision checks.
 
-#### 📐 c. Pygame Rectangles for Hitboxes
+#### c. Pygame Rectangles for Hitboxes
 
 - Each sprite is associated with a `pygame.Rect`
 - Used in:
@@ -163,7 +163,7 @@ if bullet.rect.colliderect(enemy.rect):
 ```
 - Enables fast and reliable overlap detection without external libraries
 
-#### 🖼️ d. Assets: Images and Sounds
+#### d. Assets: Images and Sounds
 
 - Images: `pygame.image.load()`
 - Sounds: `pygame.mixer.Sound()`
@@ -171,7 +171,7 @@ if bullet.rect.colliderect(enemy.rect):
 - Loaded once during initialization
 - Stored in variables and reused to avoid repeated file I/O
 
-### Analysis of all the classes
+#### Analysis of all the classes
 1.Character 
 | Element         | Description                                                                 |
 |-----------------|-----------------------------------------------------------------------------|
@@ -219,7 +219,7 @@ if bullet.rect.colliderect(enemy.rect):
 | Constructor    | Initializes the user using position, texture, and scale             |
 | Behavior       | Inherits all behavior from `Character`; no additional methods yet   |
 
-### Header File Explanation (`header.hpp`)
+#### Header File Explanation (`header.hpp`)
 
 | Element                        | Description                                                                |
 |--------------------------------|----------------------------------------------------------------------------|
@@ -256,7 +256,7 @@ if bullet.rect.colliderect(enemy.rect):
 
 ## 👨‍💻 Credits
  
- - Original Author: 
+ - Original Author: Subham, Ryan, Danielle, Manjesh   
  - Investigated by:
    - Manya Rana (202401115)
    - Mrunali Parmar (202401122)
