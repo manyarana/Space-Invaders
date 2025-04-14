@@ -1,4 +1,4 @@
-# 🚀 Space Invaders - Open Source Project Presentation
+# 🚀 Space Invaders - Project 3
 
 ---
 
