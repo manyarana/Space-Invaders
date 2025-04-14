@@ -75,7 +75,7 @@ Input is managed through `pygame.event.get()` inside the loop, checking for both
 
 ## 🔍 Depth-Wise Analysis
 
-This section explores the **internal architecture** and **engineering choices** behind the Space Invaders project. It focuses on the approaches taken during development, the data structures implemented, and key trade-offs considered by the original developer.
+This section explores the internal architecture and engineering choices behind the Space Invaders project. It focuses on the approaches taken during development, the data structures implemented, and key trade-offs considered by the original developer.
 
 ---
 
@@ -124,8 +124,8 @@ Movement is detected with `pygame.key.get_pressed()`, enabling smooth, continuou
 Rather than using a physics engine, the game relies on manual bounding box collision detection using `pygame.Rect.colliderect()`.
 
 This method is:
--Lightweight and fast for simple 2D games
--Sufficient for rectangle-shaped hitboxes (like bullets/enemies)
+- Lightweight and fast for simple 2D games
+- Sufficient for rectangle-shaped hitboxes (like bullets/enemies)
 
 ### 2️⃣ Data Structures Used
 
@@ -133,43 +133,43 @@ This method is:
 
 Encapsulated into three main game object types:
 
-->Player Class
-  -Attributes: position, image, speed
-  -Methods: move_left(), move_right(), shoot()
-->Enemy Class
-  -Attributes: position, image, direction
-  -Methods: move(), respawn()
-->Bullet Class
-  -Attributes: position, velocity, source (player/enemy)
-  -Method: update(), check_bounds()
+-> Player Class
+  - Attributes: position, image, speed
+  - Methods: move_left(), move_right(), shoot()
+-> Enemy Class
+  - Attributes: position, image, direction
+  - Methods: move(), respawn()
+-> Bullet Class
+  - Attributes: position, velocity, source (player/enemy)
+  - Method: update(), check_bounds()
 
 This abstraction simplifies managing multiple instances and separates responsibilities.
 
 #### 📚 b. Lists (Collections of Game Entities)
 
--enemies[]: List storing active enemy instances
--bullets[]: List storing all fired bullets
--removed_bullets[]: Temporary list to avoid modifying lists during iteration
+- enemies[]: List storing active enemy instances
+- bullets[]: List storing all fired bullets
+- removed_bullets[]: Temporary list to avoid modifying lists during iteration
 
 These structures allow easy iteration for movement updates and collision checks.
 
 #### 📐 c. Pygame Rectangles for Hitboxes
 
--Each sprite is associated with a `pygame.Rect`
--Used in:
+- Each sprite is associated with a `pygame.Rect`
+- Used in:
 ``` python
 if bullet.rect.colliderect(enemy.rect):
     # Handle hit
 ```
--Enables fast and reliable overlap detection without external libraries
+- Enables fast and reliable overlap detection without external libraries
 
 #### 🖼️ d. Assets: Images and Sounds
 
--Images: `pygame.image.load()`
--Sounds: `pygame.mixer.Sound()`
--Managed through utility functions (`utils.py`)
--Loaded once during initialization
--Stored in variables and reused to avoid repeated file I/O
+- Images: `pygame.image.load()`
+- Sounds: `pygame.mixer.Sound()`
+- Managed through utility functions (`utils.py`)
+- Loaded once during initialization
+- Stored in variables and reused to avoid repeated file I/O
 
 ### 3️⃣ Trade-offs Made
 
@@ -186,21 +186,21 @@ if bullet.rect.colliderect(enemy.rect):
 
 ## 💡 Key Learnings
 
--Understood the game loop architecture in real-world Pygame projects.
--Gained insight into class-based design for game elements.
--Learned how Pygame handles input, sound, image rendering, and FPS control.
--Improved ability to read, analyze, and explain existing code.
+- Understood the game loop architecture in real-world Pygame projects.
+- Gained insight into class-based design for game elements.
+- Learned how Pygame handles input, sound, image rendering, and FPS control.
+- Improved ability to read, analyze, and explain existing code.
 
 ---
 
 ## 👨‍💻 Credits
  
- -Original Author: 
- -Investigated by:
-    Manya Rana (202401115)
-    Mrunali Parmar (202401122)
-    Krishna Parmar (202401100)
-    Krisha Bhuva (202401099)
+ - Original Author: 
+ - Investigated by:
+   - Manya Rana (202401115)
+   - Mrunali Parmar (202401122)
+   - Krishna Parmar (202401100)
+   - Krisha Bhuva (202401099)
 
 ---
 
