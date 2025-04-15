@@ -136,9 +136,11 @@ Encapsulated into three main game object types:
 -> Player Class
   - Attributes: position, image, speed
   - Methods: move_left(), move_right(), shoot()
+    
 -> Enemy Class
   - Attributes: position, image, direction
   - Methods: move(), respawn()
+    
 -> Bullet Class
   - Attributes: position, velocity, source (player/enemy)
   - Method: update(), check_bounds()
