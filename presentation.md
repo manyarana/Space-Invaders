@@ -232,6 +232,46 @@ if bullet.rect.colliderect(enemy.rect):
 | `using namespace sf`           | Allows direct use of SFML types like `RenderWindow`, `Texture`, etc.       |
 | `using std::...`               | Allows direct use of common STL items (`cout`, `vector`, etc.)             |
 
+#### Main Game Loop
+
+| Element                  | Description                                                                 |
+|--------------------------|-----------------------------------------------------------------------------|
+| `RenderWindow`           | Creates a 950x950 game window                                               |
+| `Textures`               | Loads images for ship, alien, missiles, and shields                         |
+| `Music` & `SoundBuffer`  | Loads background music and sound effects (`shoot`, `kill`, `hit`)           |
+| `Text`                   | Displays score, lives, level, and messages using `SFML::Text`               |
+| `Fonts`                  | Loads "font.ttf" for text rendering                                         |
+
+
+| Entity        | Description                                                                 |
+|---------------|-----------------------------------------------------------------------------|
+| `ship`        | The player-controlled ship (a `User`, subclass of `Character`)              |
+| `enemies`     | 10x5 grid of alien enemies (`Enemy`, subclass of `Character`)               |
+| `missiles`    | Stores player-fired missiles (`Missile`)                                    |
+| `enemyM`      | Stores enemy-fired missiles                                                 |
+| `shields`     | 3 shield sprites with 4-stage damage textures                               |
+
+
+| Section                   | Description                                                                |
+|---------------------------|----------------------------------------------------------------------------|
+| `Menu`                    | Displays instructions and gets user input (Play / Test / Exit)             |
+| `ship_movement()`         | Moves the ship left/right with A/D or arrow keys                           |
+| `missile_movement()`      | Moves user missiles up and enemy missiles down                             |
+| `draw_missiles()`         | Renders missiles to the window                                             |
+| `Enemy Movement`          | Enemies move side to side, descend when hitting screen edge                |
+| `Collision Detection`     | Handles missile-enemy, missile-shield, and missile-ship interactions       |
+| `Level Progression`       | Increases level when all enemies are defeated                              |
+| `Game Over`               | Triggers when lives reach 0 or enemies reach the bottom                    |
+
+
+| Test Case                 | Description                                                                 |
+|---------------------------|-----------------------------------------------------------------------------|
+| Test 1 - Missile Deletion | Checks if missiles are correctly removed when leaving screen                |
+| Test 2 - Ship Hit         | Verifies life loss when enemy missile hits the player                       |
+| Test 3 - Shield Damage    | Confirms shield takes damage in stages when hit                             |
+| Test 4 - Enemy Movement   | Displays and tests enemy movement across screen                             |
+| Test 5 - Enemy Shooting   | Ensures random enemies fire projectiles correctly                           |
+
 ### 3️⃣ Trade-offs Made
 
 | Trade-off                    | Benefits                                | Limitations                                     |
@@ -242,6 +282,9 @@ if bullet.rect.colliderect(enemy.rect):
 | No scene manager             | Simplifies main loop                    | Can't switch between game states                |
 | Single-player only           | Focused logic, minimal complexity       | No support for multiplayer or AI behavior       |
 | One-direction bullet flow    | Avoids logic duplication                | No enemy bullets or special attacks             |
+
+---
+## Demo Video
 
 ---
 
