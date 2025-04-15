@@ -133,8 +133,7 @@ and a loaded `sf::Font` (e.g., `font.ttf`).
 
 Input handling is implemented using SFML's own event system with `sf::Event`. Keyboard events are captured and used to move the player ship or trigger actions like firing missiles.
 
-cpp 
-```
+``` cpp
 sf::Event event;
 while (window.pollEvent(event)) {
     if (event.type == sf::Event::Closed)
