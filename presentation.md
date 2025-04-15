@@ -379,6 +379,21 @@ Even though each class has its own `.h` and `.cpp` file,  following typical SFML
 | No scene manager             | Simplifies main loop                    | Can't switch between game states                |
 | Single-player only           | Focused logic, minimal complexity       | No support for multiplayer or AI behavior       |
 | One-direction bullet flow    | Avoids logic duplication                | No enemy bullets or special attacks             |
+---
+## Collision Detection Improvements in main.cpp
+``` cpp
+bool checkCollision(const sf::Sprite& sprite1, const sf::Sprite& sprite2) {
+    return sprite1.getGlobalBounds().intersects(sprite2.getGlobalBounds());
+}
+```
+- Checks if two SFML sprites intersect using global bounds
+- Returns True if sprites overlap
+
+| Collision Type           | Old Check                       |     New Check                       |
+|--------------------------|---------------------------------|-------------------------------------|
+| Missile vs Enemy         | Position-based (x/y offsets)    | checkCollisions(*missile,*enemy)    |
+| Enemy missile vs Ship    | Hardcoded hitbox (+120/-120 px) | checkCollision(*enemyMissile, *ship)|
+|Enemy vs Shield           | Manual x/y range checks         | checkCollision(*enemy,shieldSprite) |
 
 ---
 ## Demo Video
