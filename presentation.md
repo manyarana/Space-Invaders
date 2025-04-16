@@ -50,7 +50,7 @@ The project follows a modular file structure, organizing game components into se
 while (window.isOpen()) {
     handleInput();
     update();
-    detectCollisions();
+    checkCollision();
     render();
 }
 ```
@@ -60,10 +60,10 @@ a. Event Handling
 
 b. State Updates
 - Player updates movement based on input flags.
-- All bullets move upwards each frame.
+- All missiles move upwards each frame.
 - Enemies move downwards and may respawn if destroyed or offscreen.
 - Game difficulty may scale based on score or enemy count.
-- Ensures enemies are removed or respawned, bullets are deleted.
+- Ensures enemies are removed or respawned, missiles are deleted.
 
 d. Rendering
 - ```window.clear()``` followed by drawing all game entities.
@@ -79,7 +79,7 @@ If an enemy reaches the player or bottom edge of the screen, the game ends.
 |----------------|-----------------------------------------|
 | ← Left Arrow   | Move player spaceship left              |
 | → Right Arrow  | Move player spaceship right             |
-| Spacebar       | Fire a bullet                           |
+| Spacebar       | Fire a missile                          |
 | Escape (ESC)   | Optional: Exit / pause (if implemented) |
 
 
@@ -105,7 +105,7 @@ The project is structured using **object-oriented principles**. Each core game e
 
 - **`Player`**: Handles movement, screen boundaries, shooting bullets, and drawing itself.
 - **`Enemy`**: Controls movement patterns, collision behavior, and respawning.
-- **`Bullet`**: Manages bullet direction, velocity, rendering, and off-screen cleanup.
+- **`Missile`**: Manages bullet direction, velocity, rendering, and off-screen cleanup.
 
 Benefits of OOP in this context:
 - **Encapsulation**: Keeps functionality modular and isolated.
@@ -158,9 +158,9 @@ This approach allows for:
  SFML uses `sf::FloatRect::intersects()` for collision detection, typically done using `getGlobalBounds()` from any `sf::Sprite` or `sf::Text`.
 cpp
 ```
-if (bullet.getBounds().intersects(enemy.getBounds())) {
-    // Bullet hit the enemy
-    bullet.setActive(false);
+if (missiles.getBounds().intersects(enemy.getBounds())) {
+    // Missiles hit the enemy
+    missiles.setActive(false);
     enemy.destroy();
 }
 ```
@@ -214,7 +214,7 @@ The game uses C++ STL containers to manage dynamic lists of objects:
 
 ```cpp
 std::vector<Enemy> enemies;
-std::vector<Bullet> bullets;
+std::vector<Missile> missiles;
 ```
 - enemies: Stores all active enemy objects, updated and drawn every frame.
 - bullets: Stores bullets fired by the player. Each bullet is updated and drawn independently.
@@ -229,7 +229,7 @@ Benefits of std::vector:
 
 - Each entity (missile, enemy, ship) uses getGlobalBounds() to get its AABB for collision detection.
 ``` cpp
- if (missile.getBounds().intersects(enemy.getBounds())) {
+ if (missiles.getBounds().intersects(enemy.getBounds())) {
     // Collision response
  }
   ```
@@ -388,15 +388,13 @@ bool checkCollision(const sf::Sprite& sprite1, const sf::Sprite& sprite2) {
 ```
 - Checks if two SFML sprites intersect using global bounds
 - Returns True if sprites overlap
+- Replaces manual position checks with SFML's built-in bounding box collision
 
 | Collision Type           | Old Check                       |     New Check                       |
 |--------------------------|---------------------------------|-------------------------------------|
 | Missile vs Enemy         | Position-based (x/y offsets)    | checkCollisions(*missile,*enemy)    |
 | Enemy missile vs Ship    | Hardcoded hitbox (+120/-120 px) | checkCollision(*enemyMissile, *ship)|
 |Enemy vs Shield           | Manual x/y range checks         | checkCollision(*enemy,shieldSprite) |
-
----
-## Demo Video
 
 ---
 
@@ -419,15 +417,3 @@ bool checkCollision(const sf::Sprite& sprite1, const sf::Sprite& sprite2) {
    - Krisha Bhuva (202401099)
 
 ---
-
-
-
-
-
-
-
-
-
-
-
-  
